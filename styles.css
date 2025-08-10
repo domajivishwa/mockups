@@ -1,0 +1,23 @@
+
+:root{--bg:#f6f7fb;--card:#fff;--accent:#1f7aec;--muted:#6b7280}
+*{box-sizing:border-box}
+body{font-family:Inter,system-ui,Arial;margin:0;background:var(--bg);color:#111827}
+.container{max-width:1200px;margin:18px auto;padding:18px}
+header h1{margin:0 0 6px 0;font-size:20px}
+main{display:flex;gap:18px;margin-top:16px}
+.sidebar{width:320px;display:flex;flex-direction:column;gap:12px}
+.panel{background:var(--card);padding:12px;border-radius:10px;box-shadow:0 8px 24px rgba(16,24,40,0.06)}
+.gallery{display:flex;flex-wrap:wrap;gap:8px;max-height:280px;overflow:auto;padding:6px}
+.thumb{width:80px;height:110px;object-fit:cover;border-radius:6px;cursor:pointer;border:2px solid transparent}
+.thumb.selected{outline:3px solid rgba(31,122,236,0.15);border-color:var(--accent)}
+.upload-btn{display:block;margin-top:8px;padding:8px;border-radius:8px;background:#eef2ff;cursor:pointer;color:#0f172a}
+.controls label{display:flex;justify-content:space-between;align-items:center;margin:8px 0;color:var(--muted)}
+.btn{padding:8px 10px;border-radius:8px;border:none;background:#e5e7eb;cursor:pointer}
+.btn.primary{background:var(--accent);color:#fff}
+.editor{flex:1}
+.canvas-outer{background:var(--card);padding:12px;border-radius:12px;box-shadow:0 8px 24px rgba(16,24,40,0.06);position:relative}
+canvas{width:100%;height:auto;border-radius:6px;display:block}
+#konvaContainer{position:absolute;left:12px;top:12px;right:12px;bottom:12px;pointer-events:none}
+.note{margin-top:8px;font-size:13px;color:var(--muted)}
+footer{margin-top:12px;font-size:13px;color:var(--muted)}
+@media(max-width:980px){main{flex-direction:column}.sidebar{width:100%}#konvaContainer{position:relative}}

@@ -1,0 +1,80 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>T-Shirt Mockups — Multi-Model + Design Editor</title>
+  <meta name="description" content="Upload model photos, recolor shirt, upload and place design with rotation/scale/opacity (Konva).">
+  <link rel="stylesheet" href="styles.css">
+  <!-- MediaPipe CDN scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation@0.1/selfie_segmentation.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.1/pose.min.js"></script>
+  <!-- Konva for design transformations -->
+  <script src="https://cdn.jsdelivr.net/npm/konva@8.4.3/konva.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>T-Shirt Mockups — Multi-Model + Design Editor</h1>
+      <p>Choose a model from the gallery (or upload your own), recolor the shirt, then upload a design and position it on the shirt. Export the final PNG.</p>
+    </header>
+
+    <main>
+      <aside class="sidebar">
+        <section class="panel">
+          <h3>Model gallery</h3>
+          <div id="gallery" class="gallery"></div>
+          <label class="upload-btn">Upload models
+            <input id="uploadModels" type="file" accept="image/*" multiple>
+          </label>
+        </section>
+
+        <section class="panel">
+          <h3>Design</h3>
+          <label class="upload-btn">Upload design (png with transparency)
+            <input id="uploadDesign" type="file" accept="image/*">
+          </label>
+          <div class="controls">
+            <label>Scale <input id="scale" type="range" min="0.1" max="3" step="0.01" value="1"></label>
+            <label>Rotation <input id="rotate" type="range" min="-180" max="180" step="1" value="0"></label>
+            <label>Opacity <input id="designOpacity" type="range" min="0" max="1" step="0.01" value="1"></label>
+            <button id="resetDesign" class="btn">Reset design position</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h3>Shirt color</h3>
+          <label>Color <input id="colorPicker" type="color" value="#1f7aec"></label>
+          <label>Opacity <input id="shirtOpacity" type="range" min="0" max="1" step="0.01" value="0.85"></label>
+          <label>Blend <select id="blend">
+            <option value="multiply">Multiply</option>
+            <option value="overlay">Overlay</option>
+            <option value="soft-light">Soft-light</option>
+            <option value="source-over">Normal</option>
+          </select></label>
+          <label>Mask smoothness <input id="blur" type="range" min="0" max="24" step="1" value="6"></label>
+        </section>
+
+        <section class="panel">
+          <h3>Export</h3>
+          <button id="downloadBtn" class="btn primary">Download PNG</button>
+          <div class="note">Tip: Use high-resolution images for better exports.</div>
+        </section>
+      </aside>
+
+      <section class="editor">
+        <div class="canvas-outer">
+          <canvas id="photoCanvas" width="900" height="1200"></canvas>
+          <!-- Konva container overlay -->
+          <div id="konvaContainer"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>All processing happens in the browser. To add persistent gallery models, drop images into /models/ on your host.</footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
